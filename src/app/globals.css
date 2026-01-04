@@ -22,6 +22,36 @@
   .border-gold {
     border-color: var(--color-gold);
   }
+
+  .animate-enter-logo {
+    animation: enter-logo 2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    will-change: transform, opacity, filter;
+  }
+
+  .hover-glow-logo {
+    transition: all 0.5s ease-out;
+    will-change: transform, filter;
+    cursor: pointer;
+  }
+
+  .hover-glow-logo:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.6));
+  }
+
+  @keyframes enter-logo {
+    0% {
+      opacity: 0;
+      transform: scale(0.9) translateY(30px);
+      filter: blur(10px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      filter: blur(0);
+    }
+  }
 }
 
 body {

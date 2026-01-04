@@ -59,9 +59,9 @@ export const services: Service[] = [
         slug: "location-materiel",
         subtitle: "Parc Matériel Pro",
         description: "Le matériel professionnel que nous utilisons nous-mêmes sur le terrain.",
-        fullDescription: "Nous avons commencé par fabriquer nos enceintes par passion du son. Aujourd'hui, nous vous proposons les standards mondiaux (L-Acoustics, RCF) que nous utilisons sur nos propres productions. Pas de matériel dormant : c'est un parc vivant, entretenu et connu sur le bout des doigts par nos techniciens.",
+        fullDescription: "Nous avons commencé par fabriquer nos enceintes par passion du son. Aujourd'hui, nous vous proposons les standards mondiaux (Horn, Alto) que nous utilisons sur nos propres productions. Pas de matériel dormant : c'est un parc vivant, entretenu et connu sur le bout des doigts par nos techniciens.",
         includes: [
-            "Systèmes Son L-Acoustics / RCF",
+            "Systèmes Son Horn / Alto",
             "Consoles de mixage & Micros HF",
             "Éclairage Asservi & Projecteurs LED",
             "Structure & Distribution électrique",

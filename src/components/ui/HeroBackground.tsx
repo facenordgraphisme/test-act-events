@@ -3,22 +3,27 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
-const images = [
+const defaultImages = [
     "/assets/image00004.jpeg",
     "/assets/image00022.jpeg",
     "/assets/image00015.jpeg",
     "/assets/image00019.jpeg",
 ];
 
-export function HeroBackground() {
+interface HeroBackgroundProps {
+    images?: string[];
+}
+
+export function HeroBackground({ images = defaultImages }: HeroBackgroundProps) {
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
+        if (!images || images.length === 0) return;
         const timer = setInterval(() => {
             setIndex((prev) => (prev + 1) % images.length);
         }, 6000); // Change image every 6 seconds
         return () => clearInterval(timer);
-    }, []);
+    }, [images]);
 
     return (
         <div className="absolute inset-0 overflow-hidden bg-neutral-900">

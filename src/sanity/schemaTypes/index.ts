@@ -6,7 +6,8 @@ import testimonial from './testimonial'
 import galleryItem from './galleryItem'
 import faq from './faq'
 import quoteRequest from './quoteRequest'
+import homepage from './homepage'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [siteSettings, service, testimonial, galleryItem, faq, quoteRequest],
+  types: [siteSettings, service, testimonial, galleryItem, faq, quoteRequest, homepage],
 }

@@ -8,8 +8,12 @@ export function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                     {/* Brand */}
                     <div className="space-y-4">
-                        <Link href="/" className="text-2xl font-bold tracking-tighter uppercase font-heading text-white">
-                            ACT <span className="text-gold">Évent Pro</span>
+                        <Link href="/" className="block relative h-24 w-auto mb-6">
+                            <img
+                                src="/assets/logos/logo-white.png"
+                                alt="ACT Events"
+                                className="w-full h-full object-contain"
+                            />
                         </Link>
                         <p className="text-gray-400 text-sm leading-relaxed">
                             Sonorisation, éclairage et animation DJ haut de gamme dans les Hautes-Alpes.
