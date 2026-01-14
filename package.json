@@ -11,6 +11,7 @@
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
     "@sanity/image-url": "^1.2.0",
+    "@sanity/locale-fr-fr": "^1.2.27",
     "@sanity/vision": "^4.22.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.26",

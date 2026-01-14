@@ -87,7 +87,7 @@ export default defineType({
                     of: [{
                         type: 'object',
                         fields: [
-                            defineField({ name: 'icon', type: 'string', title: 'Emoji/Icon' }),
+                            defineField({ name: 'icon', type: 'string', title: 'Émoji / Icône' }),
                             defineField({ name: 'label', type: 'string', title: 'Titre' }),
                             defineField({ name: 'desc', type: 'string', title: 'Description' }),
                         ]
@@ -170,6 +170,11 @@ export default defineType({
                     }]
                 })
             ]
-        })
+        }),
+        defineField({
+            name: 'seo',
+            title: 'SEO & Meta',
+            type: 'seo',
+        }),
     ]
 })

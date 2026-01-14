@@ -2,30 +2,30 @@ import { defineField, defineType } from 'sanity'
 
 export default defineType({
     name: 'testimonial',
-    title: 'Testimonial',
+    title: 'Témoignage',
     type: 'document',
     fields: [
         defineField({
             name: 'name',
-            title: 'Client Name',
+            title: 'Nom du Client',
             type: 'string',
             validation: (Rule) => Rule.required(),
         }),
         defineField({
             name: 'role',
-            title: 'Role / Event Type',
+            title: 'Rôle / Type d\'événement',
             type: 'string',
-            description: 'e.g. Mariage, Anniversaire, Corporate',
+            description: 'ex: Mariage, Anniversaire, Entreprise',
         }),
         defineField({
             name: 'quote',
-            title: 'Quote',
+            title: 'Citation',
             type: 'text',
             validation: (Rule) => Rule.required(),
         }),
         defineField({
             name: 'rating',
-            title: 'Rating',
+            title: 'Note (1-5)',
             type: 'number',
             initialValue: 5,
             validation: (Rule) => Rule.min(1).max(5),
@@ -37,7 +37,7 @@ export default defineType({
         }),
         defineField({
             name: 'image',
-            title: 'Client Image (Optional)',
+            title: 'Photo Client (Optionnel)',
             type: 'image',
             options: { hotspot: true },
         }),

@@ -2,26 +2,19 @@ import { defineField, defineType } from 'sanity'
 
 export default defineType({
     name: 'galleryItem',
-    title: 'Gallery Item',
+    title: 'Élément Galerie',
     type: 'document',
     fields: [
         defineField({
             name: 'title',
-            title: 'Title',
+            title: 'Titre',
             type: 'string',
         }),
         defineField({
             name: 'category',
-            title: 'Category',
-            type: 'string',
-            options: {
-                list: [
-                    { title: 'Wedding', value: 'wedding' },
-                    { title: 'Birthday', value: 'birthday' },
-                    { title: 'Corporate', value: 'corporate' },
-                    { title: 'Equipment', value: 'equipment' },
-                ],
-            },
+            title: 'Catégorie',
+            type: 'reference',
+            to: [{ type: 'galleryCategory' }],
             validation: (Rule) => Rule.required(),
         }),
         defineField({
@@ -33,7 +26,7 @@ export default defineType({
         }),
         defineField({
             name: 'altText',
-            title: 'Alt Text',
+            title: 'Texte Alternatif',
             type: 'string',
         }),
     ],

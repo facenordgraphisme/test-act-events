@@ -2,7 +2,7 @@ import { defineField, defineType } from 'sanity'
 
 export default defineType({
     name: 'faq',
-    title: 'FAQ',
+    title: 'FAQ (Foire Aux Questions)',
     type: 'document',
     fields: [
         defineField({
@@ -13,13 +13,13 @@ export default defineType({
         }),
         defineField({
             name: 'answer',
-            title: 'Answer',
+            title: 'Réponse',
             type: 'text',
             validation: (Rule) => Rule.required(),
         }),
         defineField({
             name: 'order',
-            title: 'Order',
+            title: 'Ordre',
             type: 'number',
         }),
     ],

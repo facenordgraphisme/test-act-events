@@ -2,44 +2,44 @@ import { defineField, defineType } from 'sanity'
 
 export default defineType({
     name: 'siteSettings',
-    title: 'Site Settings',
+    title: 'Paramètres du Site',
     type: 'document',
     fields: [
         defineField({
             name: 'businessName',
-            title: 'Business Name',
+            title: 'Nom de l\'Entreprise',
             type: 'string',
         }),
         defineField({
             name: 'tagline',
-            title: 'Tagline',
+            title: 'Slogan',
             type: 'string',
         }),
         defineField({
             name: 'phoneNumber',
-            title: 'Phone Number',
+            title: 'Numéro de Téléphone',
             type: 'string',
         }),
         defineField({
             name: 'email',
-            title: 'Email Address',
+            title: 'Adresse Email',
             type: 'string',
             validation: (Rule) => Rule.email(),
         }),
         defineField({
             name: 'address',
-            title: 'Address / Location',
+            title: 'Adresse / Localisation',
             type: 'string',
         }),
         defineField({
             name: 'coverageArea',
-            title: 'Coverage Area',
+            title: 'Zone de Couverture',
             type: 'string',
-            description: 'e.g. Hautes-Alpes, Gap, Embrun...',
+            description: 'ex: Hautes-Alpes, Gap, Embrun...',
         }),
         defineField({
             name: 'socialLinks',
-            title: 'Social Media Links',
+            title: 'Réseaux Sociaux',
             type: 'object',
             fields: [
                 defineField({ name: 'instagram', type: 'url' }),
@@ -49,7 +49,7 @@ export default defineType({
         }),
         defineField({
             name: 'seo',
-            title: 'Default SEO',
+            title: 'SEO par défaut',
             type: 'object',
             fields: [
                 defineField({ name: 'metaTitle', type: 'string' }),

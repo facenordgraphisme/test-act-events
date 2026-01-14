@@ -6,6 +6,8 @@ import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { PortableText } from "next-sanity";
 
+import { generateSeoMetadata, generateStructuredData } from "@/lib/seo";
+
 // --- GROQ QUERY ---
 // --- CONSTANTS ---
 const MAIN_ZONE_CITIES = ["Gap", "Briançon", "Embrun", "Guillestre", "L'Argentière", "Veynes", "Tallard", "Chorges", "Serre Chevalier", "Montgenèvre", "La Grave", "Orcières", "Vars", "Risoul"];
@@ -45,14 +47,13 @@ const HOMEPAGE_QUERY = `*[_type == "homepage"][0]{
   },
   services {
     title,
-    subtitle,
-    items[] {
-      subtitle,
-      title,
-      description,
-      image,
-      link
-    }
+    subtitle
+  },
+  "servicesList": *[_type == "service"] | order(order asc) {
+    title,
+    shortDescription,
+    featuredImage,
+    slug
   },
   story {
     intro,
@@ -69,14 +70,66 @@ const HOMEPAGE_QUERY = `*[_type == "homepage"][0]{
       name,
       logo
     }
-  }
+  },
+  seo
 }`;
+
+export async function generateMetadata() {
+  const data = await client.fetch(HOMEPAGE_QUERY);
+  return generateSeoMetadata(data?.seo, {
+    title: "Act Events | Sonorisation, Éclairage et Événementiel 05",
+    description: "Prestataire technique événementiel dans les Hautes-Alpes (05). Sonorisation, éclairage, DJ et organisation de festivals."
+  });
+}
 
 export default async function Home() {
   const data = await client.fetch(HOMEPAGE_QUERY);
 
   // Prepare Hero Images
   const heroImages = data?.hero?.backgroundImages?.map((img: any) => urlFor(img).url()) || [];
+
+  // Prepare Services
+  // Prefer dynamic "servicesList" from Sanity "service" documents
+  // Fallback to "services.items" (manual list in Homepage) if needed (for backward compat), 
+  // or hardcoded items if absolutely nothing exists.
+  let servicesToDisplay = [];
+
+  if (data?.servicesList && data.servicesList.length > 0) {
+    servicesToDisplay = data.servicesList.map((svc: any) => ({
+      title: svc.title,
+      subtitle: "Prestation", // Generic subtitle since schema doesn't have one yet, or could use a category if added later
+      description: svc.shortDescription,
+      image: svc.featuredImage,
+      link: svc.slug?.current ? `/prestations/${svc.slug.current}` : '#'
+    }));
+  } else if (data?.services?.items && data.services.items.length > 0) {
+    servicesToDisplay = data.services.items;
+  } else {
+    // Hardcoded fallback
+    servicesToDisplay = [
+      {
+        title: "Soirée 100% Personnalisée",
+        subtitle: "Clé en Main & Festivals",
+        description: "Sonorisation, éclairage & structure pour événements majeurs.",
+        img: "/assets/image00001.jpeg",
+        link: "/prestations/soiree-personnalisee"
+      },
+      {
+        title: "Prestation DJ",
+        subtitle: "Performance Artistique",
+        description: "Performance musicale sur-mesure pour votre événement.",
+        img: "/assets/image00003.jpeg",
+        link: "/prestations/prestation-dj"
+      },
+      {
+        title: "Location Matériel",
+        subtitle: "Son & Lumière",
+        description: "Location de matériel professionnel Horn / Alto.",
+        img: "/assets/image00006.jpeg",
+        link: "/prestations/location-materiel"
+      }
+    ];
+  }
 
   return (
     <div className="flex flex-col gap-0">
@@ -95,6 +148,7 @@ export default async function Home() {
           </div>
 
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-gray-200 text-lg md:text-2xl font-light tracking-wide uppercase">
+            <span className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>Mariages</span>
             <span className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>Festivals</span>
             <span className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>Concerts</span>
             <span className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-gold rounded-full"></span>Événementiel</span>
@@ -225,30 +279,7 @@ export default async function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {(data?.services?.items || [
-              // Fallback items if Sanity is empty
-              {
-                title: "Soirée 100% Personnalisée",
-                subtitle: "Clé en Main & Festivals",
-                description: "Sonorisation, éclairage & structure pour événements majeurs.",
-                img: "/assets/image00001.jpeg",
-                link: "/prestations/soiree-personnalisee"
-              },
-              {
-                title: "Prestation DJ",
-                subtitle: "Performance Artistique",
-                description: "Performance musicale sur-mesure pour votre événement.",
-                img: "/assets/image00003.jpeg",
-                link: "/prestations/prestation-dj"
-              },
-              {
-                title: "Location Matériel",
-                subtitle: "Son & Lumière",
-                description: "Location de matériel professionnel Horn / Alto.",
-                img: "/assets/image00006.jpeg",
-                link: "/prestations/location-materiel"
-              }
-            ]).map((service: any, idx: number) => (
+            {servicesToDisplay.map((service: any, idx: number) => (
               <Link key={idx} href={service.link || "#"}>
                 <div className="group relative h-[600px] overflow-hidden cursor-pointer grayscale hover:grayscale-0 transition-all duration-700 ease-out border border-black/5">
                   <div className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110"

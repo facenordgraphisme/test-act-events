@@ -7,7 +7,11 @@ import galleryItem from './galleryItem'
 import faq from './faq'
 import quoteRequest from './quoteRequest'
 import homepage from './homepage'
+import contactPage from './contactPage'
+import galleryCategory from './galleryCategory'
+
+import seo from './seo'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [siteSettings, service, testimonial, galleryItem, faq, quoteRequest, homepage],
+  types: [siteSettings, service, testimonial, galleryItem, faq, quoteRequest, homepage, contactPage, galleryCategory, seo],
 }
