@@ -10,7 +10,7 @@ export function Footer() {
                     <div className="space-y-4">
                         <Link href="/" className="block relative h-24 w-auto mb-6">
                             <img
-                                src="/assets/logos/logo-white.png"
+                                src="/assets/logos/logo-white.webp"
                                 alt="ACT Events"
                                 className="w-full h-full object-contain"
                             />

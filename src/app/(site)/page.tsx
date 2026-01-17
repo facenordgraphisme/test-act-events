@@ -141,7 +141,7 @@ export default async function Home() {
         <Container className="relative z-20 text-center space-y-10 max-w-6xl">
           <div className="mb-8 delay-100">
             <img
-              src="/assets/logos/logo-white.png"
+              src="/assets/logos/logo-white.webp"
               alt="ACT Events - Créateurs d'émotions"
               className="w-full max-w-2xl md:max-w-4xl h-auto max-h-[30vh] md:max-h-[40vh] object-contain mx-auto animate-enter-logo hover-glow-logo"
             />

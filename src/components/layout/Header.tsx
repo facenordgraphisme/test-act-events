@@ -47,7 +47,7 @@ export function Header() {
                 <Link href="/" className="relative h-12 w-auto md:h-16 transition-transform hover:scale-105">
                     {/* Using standard img tag temporarily if Next Image has issues with external/local paths in some setups, but prefer Image */}
                     <img
-                        src="/assets/logos/icon.png"
+                        src="/assets/logos/icon.webp"
                         alt="ACT Events"
                         className="w-full h-full object-contain"
                     />
