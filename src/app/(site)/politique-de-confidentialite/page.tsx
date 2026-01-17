@@ -1,31 +1,52 @@
 import { Container } from "@/components/ui/Container";
+import { client } from "@/sanity/lib/client";
+import { PortableText } from "next-sanity";
+import { generateSeoMetadata } from "@/lib/seo";
 
-export default function PrivacyPage() {
+const PRIVACY_QUERY = `*[_type == "privacyPolicy"][0] {
+  title,
+  lastUpdated,
+  content,
+  seo
+}`;
+
+export async function generateMetadata() {
+    const data = await client.fetch(PRIVACY_QUERY);
+    return generateSeoMetadata(data?.seo, {
+        title: data?.title || "Politique de Confidentialité | ACT Events",
+        description: "Politique de confidentialité et gestion des données personnelles.",
+    });
+}
+
+export default async function PrivacyPolicyPage() {
+    const data = await client.fetch(PRIVACY_QUERY);
+
+    if (!data) {
+        return (
+            <Container className="py-32 text-center">
+                <h1 className="text-3xl font-bold mb-4">Page non trouvée</h1>
+                <p>La politique de confidentialité n'a pas encore été configurée.</p>
+            </Container>
+        );
+    }
+
     return (
-        <div className="py-20 bg-background min-h-screen text-gray-600">
-            <Container className="max-w-4xl space-y-8">
-                <h1 className="text-3xl font-bold font-heading text-black mb-8">Politique de Confidentialité</h1>
+        <div className="pt-32 pb-20 bg-background min-h-screen">
+            <Container className="max-w-4xl">
+                <div className="mb-12 border-b border-black/10 pb-8">
+                    <h1 className="text-4xl md:text-5xl font-bold font-heading uppercase text-black mb-4">
+                        {data.title}
+                    </h1>
+                    {data.lastUpdated && (
+                        <p className="text-gray-500 italic">
+                            Dernière mise à jour : {new Date(data.lastUpdated).toLocaleDateString("fr-FR")}
+                        </p>
+                    )}
+                </div>
 
-                <section>
-                    <h2 className="text-xl font-bold text-black mb-2">Collecte des données</h2>
-                    <p>
-                        Les informations recueillies sur le formulaire de devis sont enregistrées dans un fichier informatisé par ACT Events pour la gestion de votre demande.
-                    </p>
-                </section>
-
-                <section>
-                    <h2 className="text-xl font-bold text-black mb-2">Durée de conservation</h2>
-                    <p>
-                        Vos données sont conservées pendant la durée nécessaire au traitement de votre demande et, en cas de contrat, pour la durée légale de conservation des documents commerciaux.
-                    </p>
-                </section>
-
-                <section>
-                    <h2 className="text-xl font-bold text-black mb-2">Vos droits</h2>
-                    <p>
-                        Conformément à la loi « informatique et libertés », vous pouvez exercer votre droit d'accès aux données vous concernant et les faire rectifier en contactant : contact@act-events.fr
-                    </p>
-                </section>
+                <div className="prose prose-lg max-w-none text-gray-700 font-light prose-headings:font-heading prose-headings:uppercase prose-a:text-gold hover:prose-a:text-black">
+                    {data.content && <PortableText value={data.content} />}
+                </div>
             </Container>
         </div>
     );

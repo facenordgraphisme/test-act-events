@@ -10,8 +10,10 @@ import homepage from './homepage'
 import contactPage from './contactPage'
 import galleryCategory from './galleryCategory'
 
+import privacyPolicy from './privacyPolicy'
+
 import seo from './seo'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [siteSettings, service, testimonial, galleryItem, faq, quoteRequest, homepage, contactPage, galleryCategory, seo],
+  types: [siteSettings, service, testimonial, galleryItem, faq, quoteRequest, homepage, contactPage, galleryCategory, seo, privacyPolicy],
 }

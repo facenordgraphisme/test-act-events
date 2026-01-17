@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google"; // eslint-disable-line @typescript-eslint/no-unused-vars
 import "./globals.css";
 
+import { CookieBanner } from "@/components/ui/CookieBanner";
+
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -31,6 +33,7 @@ export default function RootLayout({
         className={`${inter.variable} ${spaceGrotesk.variable} antialiased bg-background text-foreground flex flex-col min-h-screen`}
       >
         {children}
+        <CookieBanner />
       </body>
     </html>
   );
