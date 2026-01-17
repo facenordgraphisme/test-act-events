@@ -144,10 +144,11 @@ export default async function Home() {
             <Image
               src="/assets/logos/logo-white.webp"
               alt="ACT Events - Créateurs d'émotions"
-              width={800}
-              height={300}
+              width={600} // Reduced from 800
+              height={225} // Reduced from 300
               priority
               className="w-full max-w-2xl md:max-w-4xl h-auto max-h-[30vh] md:max-h-[40vh] object-contain mx-auto animate-enter-logo hover-glow-logo"
+              sizes="(max-width: 768px) 90vw, (max-width: 1200px) 70vw, 800px"
             />
           </div>
 

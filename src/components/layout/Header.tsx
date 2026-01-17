@@ -10,10 +10,11 @@ import Link from 'next/link';
     <Image
         src="/assets/logos/icon.webp"
         alt="ACT Events"
-        width={200}
-        height={100}
+        width={120} // Reduced from 200
+        height={60} // Reduced from 100
         className="object-contain h-full w-auto"
         priority
+        sizes="(max-width: 768px) 48px, 64px" // Precise sizing for mobile/desktop
     />
 </Link>
 import { usePathname } from 'next/navigation';
@@ -61,10 +62,14 @@ export function Header() {
             <div className="container mx-auto px-4 flex items-center justify-between">
                 <Link href="/" className="relative h-12 w-auto md:h-16 transition-transform hover:scale-105">
                     {/* Using standard img tag temporarily if Next Image has issues with external/local paths in some setups, but prefer Image */}
-                    <img
+                    <Image
                         src="/assets/logos/icon.webp"
                         alt="ACT Events"
-                        className="w-full h-full object-contain"
+                        width={120}
+                        height={60}
+                        className="object-contain h-full w-auto" // Adjusted to match styling
+                        sizes="(max-width: 768px) 48px, 64px"
+                        priority
                     />
                 </Link>
 
