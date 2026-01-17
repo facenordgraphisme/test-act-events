@@ -14,7 +14,7 @@ import Link from 'next/link';
         height={60} // Reduced from 100
         className="object-contain h-full w-auto"
         priority
-        sizes="(max-width: 768px) 48px, 64px" // Precise sizing for mobile/desktop
+        sizes="120px" // Hardcode size since it's a fixed logo essentially
     />
 </Link>
 import { usePathname } from 'next/navigation';
@@ -68,7 +68,7 @@ export function Header() {
                         width={120}
                         height={60}
                         className="object-contain h-full w-auto" // Adjusted to match styling
-                        sizes="(max-width: 768px) 48px, 64px"
+                        sizes="120px"
                         priority
                     />
                 </Link>
