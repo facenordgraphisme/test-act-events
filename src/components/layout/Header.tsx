@@ -1,6 +1,21 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
+
+// ... existing imports ...
+
+// In Header component:
+<Link href="/" className="relative h-12 w-auto md:h-16 transition-transform hover:scale-105 block aspect-[2/1]">
+    <Image
+        src="/assets/logos/icon.webp"
+        alt="ACT Events"
+        width={200}
+        height={100}
+        className="object-contain h-full w-auto"
+        priority
+    />
+</Link>
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';

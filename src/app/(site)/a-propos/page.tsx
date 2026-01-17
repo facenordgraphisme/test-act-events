@@ -1,4 +1,5 @@
 import { Container } from "@/components/ui/Container";
+import Image from "next/image";
 import { Mic2, Settings, Heart, Music } from "lucide-react";
 
 export default function AboutPage() {
@@ -34,9 +35,14 @@ export default function AboutPage() {
                                 Très vite, le projet dépasse le cadre des soirées privées. Le système grandit, le public aussi. C'est la naissance d'une association avec une ambition claire : créer des événements légaux, immersifs et partager une vraie culture du son.
                             </p>
                         </div>
-                        <div className="bg-neutral-900 aspect-square rounded-lg rotate-3 shadow-xl overflow-hidden border-4 border-white order-1 md:order-2">
+                        <div className="bg-neutral-900 aspect-square rounded-lg rotate-3 shadow-xl overflow-hidden border-4 border-white order-1 md:order-2 relative">
                             {/* Placeholder for "Vintage" or "DIY" photo if available, using asset for now */}
-                            <div className="w-full h-full bg-[url('/assets/image00019.jpeg')] bg-cover bg-center opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-700" />
+                            <Image
+                                src="/assets/image00019.jpeg"
+                                alt="Les débuts - Fabrication d'enceintes"
+                                fill
+                                className="object-cover opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-700"
+                            />
                         </div>
                     </section>
 

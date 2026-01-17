@@ -1,5 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
@@ -49,10 +50,11 @@ export default async function ServicesPage() {
                                         <div className="absolute inset-0 bg-gold/10 opacity-0 group-hover:opacity-100 transition-opacity z-10" />
                                         <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-0" />
                                         {(service.featuredImage || service.staticImage) && (
-                                            <img
+                                            <Image
                                                 src={service.featuredImage ? urlFor(service.featuredImage).url() : service.staticImage}
                                                 alt={service.title}
-                                                className="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700"
+                                                fill
+                                                className="object-cover transform group-hover:scale-105 transition-transform duration-700"
                                             />
                                         )}
                                     </div>

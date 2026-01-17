@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { HeroBackground } from "@/components/ui/HeroBackground";
@@ -140,9 +141,12 @@ export default async function Home() {
 
         <Container className="relative z-20 text-center space-y-10 max-w-6xl">
           <div className="mb-8 delay-100">
-            <img
+            <Image
               src="/assets/logos/logo-white.webp"
               alt="ACT Events - Créateurs d'émotions"
+              width={800}
+              height={300}
+              priority
               className="w-full max-w-2xl md:max-w-4xl h-auto max-h-[30vh] md:max-h-[40vh] object-contain mx-auto animate-enter-logo hover-glow-logo"
             />
           </div>
@@ -159,7 +163,7 @@ export default async function Home() {
               <p>{data.hero.description}</p>
             ) : (
               <p>
-                L'alliance unique d'une <span className="text-white font-medium">sensibilité artistique</span> et d'une <span className="text-white font-medium">rigueur technique</span>.
+                L&apos;alliance unique d&apos;une <span className="text-white font-medium">sensibilité artistique</span> et d&apos;une <span className="text-white font-medium">rigueur technique</span>.
                 <br className="hidden md:block" />
                 Intervention dans les <span className="text-gold">Hautes-Alpes</span> et en <span className="text-gold">Région Sud</span>.
               </p>
@@ -224,10 +228,10 @@ export default async function Home() {
                 ) : (
                   <>
                     <p>
-                      Né d'une passion viscérale pour le son et la musique, <strong className="text-white">ACT Events</strong> est le fruit d'un parcours atypique : celui d'un artiste DJ habitué aux exigences du dancefloor et d'un technicien rigoureux.
+                      Né d&apos;une passion viscérale pour le son et la musique, <strong className="text-white">ACT Events</strong> est le fruit d&apos;un parcours atypique : celui d&apos;un artiste DJ habitué aux exigences du dancefloor et d&apos;un technicien rigoureux.
                     </p>
                     <p>
-                      De la fabrication de nos premières enceintes à la direction technique de festivals majeurs, nous avons forgé une expertise unique. Nous ne nous contentons pas d'installer du matériel ; nous créons une <strong className="text-white">expérience immersive</strong>.
+                      De la fabrication de nos premières enceintes à la direction technique de festivals majeurs, nous avons forgé une expertise unique. Nous ne nous contentons pas d&apos;installer du matériel ; nous créons une <strong className="text-white">expérience immersive</strong>.
                     </p>
                   </>
                 )}
@@ -282,8 +286,12 @@ export default async function Home() {
             {servicesToDisplay.map((service: any, idx: number) => (
               <Link key={idx} href={service.link || "#"}>
                 <div className="group relative h-[600px] overflow-hidden cursor-pointer grayscale hover:grayscale-0 transition-all duration-700 ease-out border border-black/5">
-                  <div className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110"
-                    style={{ backgroundImage: `url(${service.image ? urlFor(service.image).url() : (service.img || "")})` }} />
+                  <Image
+                    src={service.image ? urlFor(service.image).url() : (service.img || "")}
+                    alt={service.title}
+                    fill
+                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 group-hover:opacity-60 transition-opacity duration-500" />
 
                   <div className="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-x-4 group-hover:translate-x-0">
@@ -321,9 +329,11 @@ export default async function Home() {
               <div className="absolute inset-0 bg-gold/20 translate-x-4 translate-y-4 rounded-lg transition-transform duration-500 group-hover:translate-x-2 group-hover:translate-y-2" />
               <div className="relative h-[500px] w-full rounded-lg overflow-hidden shadow-xl aspect-[3/4] md:aspect-auto">
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500 z-10" />
-                <div
-                  className="w-full h-full bg-cover bg-center transform group-hover:scale-105 transition-transform duration-700"
-                  style={{ backgroundImage: `url(${data?.story?.image ? urlFor(data.story.image).url() : '/assets/image00004.jpeg'})` }}
+                <Image
+                  src={data?.story?.image ? urlFor(data.story.image).url() : '/assets/image00004.jpeg'}
+                  alt="Notre histoire - ACT Events"
+                  fill
+                  className="object-cover transform group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
             </div>
@@ -337,7 +347,7 @@ export default async function Home() {
                 <h2 className="text-4xl md:text-5xl font-bold font-heading uppercase text-black leading-tight">
                   {data?.story?.title ? data.story.title : (
                     <>
-                      Plus qu'une agence,<br />
+                      Plus qu&apos;une agence,<br />
                       <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-yellow-600">
                         Une Passion
                       </span>
@@ -354,10 +364,10 @@ export default async function Home() {
                 ) : (
                   <>
                     <p>
-                      ACT Events est né d'une conviction simple : <strong>chaque événement mérite une âme.</strong>
+                      ACT Events est né d&apos;une conviction simple : <strong>chaque événement mérite une âme.</strong>
                     </p>
                     <p>
-                      De nos débuts à fabriquer nos propres enceintes jusqu'à la direction technique de grands festivals, nous avons forgé une double compétence rare.
+                      De nos débuts à fabriquer nos propres enceintes jusqu&apos;à la direction technique de grands festivals, nous avons forgé une double compétence rare.
                       Nous ne sommes pas seulement des techniciens, ni seulement des artistes. Nous sommes les deux.
                     </p>
                     <p>
@@ -386,7 +396,7 @@ export default async function Home() {
           <div className="text-center mb-24">
             <h2 className="text-4xl md:text-6xl font-bold font-heading uppercase text-black mb-8 tracking-tight">Zones d'Intervention</h2>
             <p className="text-gray-600 max-w-4xl mx-auto text-xl font-light leading-relaxed">
-              Basé dans les <strong className="text-black font-bold">Hautes-Alpes (05)</strong>, ACT Évent Pro rayonne sur tout le quart Sud-Est et se déplace dans toute la France pour vos projets d'ampleur.
+              Basé dans les <strong className="text-black font-bold">Hautes-Alpes (05)</strong>, ACT Évent Pro rayonne sur tout le quart Sud-Est et se déplace dans toute la France pour vos projets d&apos;ampleur.
             </p>
           </div>
 
@@ -436,8 +446,13 @@ export default async function Home() {
 
           {/* NATIONAL COVERAGE */}
           <div className="relative rounded-none lg:rounded-[2rem] overflow-hidden min-h-[600px] flex items-center">
-            <div className="absolute inset-0 bg-[url('/assets/image00005.jpeg')] bg-cover bg-center" />
-            <div className="absolute inset-0 bg-black/80" />
+            <Image
+              src="/assets/image00005.jpeg"
+              alt="Couverture Nationale"
+              fill
+              className="object-cover z-0"
+            />
+            <div className="absolute inset-0 bg-black/80 z-0" />
 
             <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent" />
 
@@ -450,7 +465,7 @@ export default async function Home() {
                   Intervention <br />Partout en France
                 </h3>
                 <p className="text-gray-300 mb-10 text-xl font-light leading-relaxed pl-8 border-l border-white/10">
-                  Des solutions techniques dimensionnées pour les festivals, tournées et événements majeurs sur l'ensemble du territoire.
+                  Des solutions techniques dimensionnées pour les festivals, tournées et événements majeurs sur l&apos;ensemble du territoire.
                 </p>
                 <div className="pl-8">
                   <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-12 mb-12">
@@ -484,10 +499,12 @@ export default async function Home() {
             {(data?.trust?.logos || []).map((client: any, idx: number) => (
               <div key={idx} className="flex items-center justify-center">
                 {client.logo ? (
-                  <img
+                  <Image
                     src={urlFor(client.logo).url()}
                     alt={client.name || "Client"}
-                    className="max-h-16 w-auto hover:opacity-100 transition-opacity"
+                    width={200}
+                    height={100}
+                    className="max-h-16 w-auto hover:opacity-100 transition-opacity object-contain"
                   />
                 ) : (
                   <span className="text-2xl font-heading font-bold">{client.name}</span>

@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { urlFor } from "@/sanity/lib/image";
@@ -67,10 +69,11 @@ export default function GalleryClient({ categories, items }: GalleryClientProps)
                 {filteredItems.map((item) => (
                     <div key={item._id} className="group relative aspect-square overflow-hidden rounded-lg bg-white border border-black/5 cursor-pointer shadow-sm hover:shadow-md">
                         {item.image && (
-                            <img
+                            <Image
                                 src={urlFor(item.image).width(800).height(800).url()}
                                 alt={item.title || "Gallery Image"}
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                fill
+                                className="object-cover transition-transform duration-700 group-hover:scale-110"
                             />
                         )}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">

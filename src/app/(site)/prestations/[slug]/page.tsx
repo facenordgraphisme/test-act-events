@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, Check, Calendar, MapPin } from "lucide-react";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
@@ -75,9 +76,12 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             {/* HEADER IMAGE */}
             <div className="relative h-[60vh] w-full bg-neutral-900 overflow-hidden">
                 <div className="absolute inset-0 bg-black/50 z-10" />
-                <div
-                    className="absolute inset-0 bg-cover bg-center"
-                    style={{ backgroundImage: `url(${service.featuredImage ? urlFor(service.featuredImage).url() : (service.staticImage || '')})` }}
+                <Image
+                    src={service.featuredImage ? urlFor(service.featuredImage).url() : (service.staticImage || '')}
+                    alt={service.title}
+                    fill
+                    className="object-cover z-0"
+                    priority
                 />
                 <Container className="absolute inset-0 z-20 flex flex-col justify-end pb-16">
                     <Link href="/prestations" className="text-white/80 hover:text-white flex items-center gap-2 mb-6 text-sm uppercase tracking-wider transition-colors w-fit">
@@ -144,10 +148,11 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                                     {service.gallery.map((img: any, i: number) => (
                                         <div key={i} className="aspect-[4/3] rounded-lg overflow-hidden relative group cursor-pointer">
                                             <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10" />
-                                            <img
+                                            <Image
                                                 src={typeof img === 'string' ? img : urlFor(img).url()}
                                                 alt={`${service.title} illustration ${i}`}
-                                                className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                                                fill
+                                                className="object-cover transform group-hover:scale-105 transition-transform duration-700"
                                             />
                                         </div>
                                     ))}
@@ -170,7 +175,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                                 <div className="flex items-start gap-3">
                                     <MapPin className="w-5 h-5 text-gold shrink-0 mt-0.5" />
                                     <div>
-                                        <span className="block text-black font-bold text-sm uppercase">Zone d'intervention</span>
+                                        <span className="block text-black font-bold text-sm uppercase">Zone d&apos;intervention</span>
                                         <span className="text-gray-500 text-sm">Hautes-Alpes & France entière</span>
                                     </div>
                                 </div>

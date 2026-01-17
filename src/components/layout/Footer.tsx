@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { Instagram, Facebook, Youtube, Phone, Mail, MapPin } from 'lucide-react';
 
@@ -8,10 +9,12 @@ export function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                     {/* Brand */}
                     <div className="space-y-4">
-                        <Link href="/" className="block relative h-24 w-auto mb-6">
-                            <img
+                        <Link href="/" className="block relative h-24 w-auto mb-6 aspect-[3/1]">
+                            <Image
                                 src="/assets/logos/logo-white.webp"
                                 alt="ACT Events"
+                                width={200}
+                                height={100}
                                 className="w-full h-full object-contain"
                             />
                         </Link>
