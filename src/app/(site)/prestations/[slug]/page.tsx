@@ -80,8 +80,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     src={service.featuredImage ? urlFor(service.featuredImage).url() : (service.staticImage || '')}
                     alt={service.title}
                     fill
-                    className="object-cover z-0"
                     priority
+                    className="object-cover z-0"
+                    sizes="100vw"
                 />
                 <Container className="absolute inset-0 z-20 flex flex-col justify-end pb-16">
                     <Link href="/prestations" className="text-white/80 hover:text-white flex items-center gap-2 mb-6 text-sm uppercase tracking-wider transition-colors w-fit">
@@ -153,6 +154,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                                                 alt={`${service.title} illustration ${i}`}
                                                 fill
                                                 className="object-cover transform group-hover:scale-105 transition-transform duration-700"
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                             />
                                         </div>
                                     ))}

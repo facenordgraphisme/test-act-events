@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const defaultImages = [
     "/assets/image00004.jpeg",
@@ -36,10 +37,13 @@ export function HeroBackground({ images = defaultImages }: HeroBackgroundProps) 
                     transition={{ duration: 1.5, ease: "easeInOut" }}
                     className="absolute inset-0"
                 >
-                    {/* Image */}
-                    <div
-                        className="absolute inset-0 bg-cover bg-center"
-                        style={{ backgroundImage: `url(${images[index]})` }}
+                    <Image
+                        src={images[index]}
+                        alt="Hero Background"
+                        fill
+                        className="object-cover"
+                        priority={true} // Always prioritize the current hero image for LCP
+                        sizes="100vw"
                     />
                 </motion.div>
             </AnimatePresence>

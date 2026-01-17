@@ -54,7 +54,8 @@ export default async function ServicesPage() {
                                                 src={service.featuredImage ? urlFor(service.featuredImage).url() : service.staticImage}
                                                 alt={service.title}
                                                 fill
-                                                className="object-cover transform group-hover:scale-105 transition-transform duration-700"
+                                                className="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700"
+                                                sizes="(max-width: 768px) 100vw, 50vw"
                                             />
                                         )}
                                     </div>

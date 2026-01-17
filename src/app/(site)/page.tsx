@@ -291,6 +291,7 @@ export default async function Home() {
                     alt={service.title}
                     fill
                     className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 group-hover:opacity-60 transition-opacity duration-500" />
 
@@ -334,6 +335,7 @@ export default async function Home() {
                   alt="Notre histoire - ACT Events"
                   fill
                   className="object-cover transform group-hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
             </div>
@@ -451,6 +453,7 @@ export default async function Home() {
               alt="Couverture Nationale"
               fill
               className="object-cover z-0"
+              sizes="100vw"
             />
             <div className="absolute inset-0 bg-black/80 z-0" />
 
