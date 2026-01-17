@@ -22,6 +22,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { clsx } from 'clsx';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -56,18 +57,17 @@ export function Header() {
         <header
             className={clsx(
                 'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-                showSolidHeader ? 'bg-[#F6F2E8]/90 backdrop-blur-md py-4 shadow-sm border-b border-black/5' : 'bg-transparent py-6'
+                showSolidHeader ? 'bg-[#F6F2E8]/90 backdrop-blur-md py-4 shadow-sm border-b border-black/5' : 'bg-transparent py-4 md:py-6'
             )}
         >
             <div className="container mx-auto px-4 flex items-center justify-between">
-                <Link href="/" className="relative h-12 w-auto md:h-16 transition-transform hover:scale-105">
-                    {/* Using standard img tag temporarily if Next Image has issues with external/local paths in some setups, but prefer Image */}
+                <Link href="/" className="relative h-10 w-auto md:h-16 transition-transform hover:scale-105" onClick={() => setIsMobileMenuOpen(false)}>
                     <Image
                         src="/assets/logos/icon.webp"
                         alt="ACT Events"
                         width={120}
                         height={60}
-                        className="object-contain h-full w-auto" // Adjusted to match styling
+                        className="object-contain h-full w-auto"
                         sizes="120px"
                         priority
                     />
@@ -96,31 +96,61 @@ export function Header() {
 
                 {/* Mobile Toggle */}
                 <button
-                    className={clsx("md:hidden", showSolidHeader ? "text-black" : "text-white")}
+                    className={clsx("md:hidden z-50 relative p-2", (showSolidHeader || isMobileMenuOpen) ? "text-black" : "text-white")}
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    aria-label="Menu"
                 >
-                    {isMobileMenuOpen ? <X /> : <Menu />}
+                    {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
                 </button>
             </div>
 
-            {/* Mobile Menu */}
-            {isMobileMenuOpen && (
-                <div className="md:hidden absolute top-full left-0 right-0 bg-[#F6F2E8] border-t border-black/5 p-4 flex flex-col gap-4 shadow-xl">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.href}
-                            href={link.href}
-                            className="text-black hover:text-gold text-lg font-medium"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                            {link.label}
-                        </Link>
-                    ))}
-                    <Link href="/devis" onClick={() => setIsMobileMenuOpen(false)}>
-                        <Button className="w-full">Demander un devis</Button>
-                    </Link>
-                </div>
-            )}
+            {/* Mobile Menu Overlay */}
+            <AnimatePresence>
+                {isMobileMenuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        className="md:hidden absolute top-0 left-0 right-0 bg-[#F6F2E8] min-h-screen flex flex-col pt-24 px-6 z-40"
+                    >
+                        <div className="flex flex-col gap-6 items-center text-center">
+                            {navLinks.map((link, idx) => (
+                                <motion.div
+                                    key={link.href}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.1 + idx * 0.1 }}
+                                >
+                                    <Link
+                                        href={link.href}
+                                        className="text-black hover:text-gold text-2xl font-heading font-medium uppercase tracking-wider block py-2"
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                    >
+                                        {link.label}
+                                    </Link>
+                                </motion.div>
+                            ))}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.1 + navLinks.length * 0.1 }}
+                                className="w-full max-w-xs mt-4"
+                            >
+                                <Link href="/devis" onClick={() => setIsMobileMenuOpen(false)} className="block w-full">
+                                    <Button className="w-full text-lg h-12" size="lg">Demander un devis</Button>
+                                </Link>
+                            </motion.div>
+                        </div>
+
+                        {/* Decorative footer in menu */}
+                        <div className="mt-auto pb-12 text-center text-sm text-gray-400">
+                            <div className="w-12 h-1 bg-gold mx-auto mb-4 rounded-full" />
+                            <p>&copy; {new Date().getFullYear()} ACT Events</p>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </header>
     );
 }

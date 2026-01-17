@@ -482,7 +482,7 @@ export default async function Home() {
                   </ul>
 
                   <Link href="/contact">
-                    <span className="inline-flex items-center justify-center rounded-sm font-medium transition-colors cursor-pointer bg-gold text-black hover:bg-[#A3863C] bg-white text-black hover:bg-gold hover:text-white border-none text-lg px-10 py-6 h-auto tracking-widest uppercase font-bold transition-all duration-300">
+                    <span className="inline-flex items-center justify-center rounded-sm font-medium transition-colors cursor-pointer bg-gold text-black hover:bg-[#A3863C] bg-white text-black hover:bg-gold hover:text-white border-none text-sm md:text-base px-6 py-4 h-auto tracking-widest uppercase font-bold transition-all duration-300">
                       Discuter de votre projet
                     </span>
                   </Link>
