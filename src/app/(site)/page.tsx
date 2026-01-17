@@ -173,12 +173,12 @@ export default async function Home() {
 
           <div className="pt-8 flex flex-col sm:flex-row gap-6 justify-center items-center">
             <Link href="/devis" className="w-full sm:w-auto">
-              <span className="inline-flex items-center justify-center rounded-sm font-medium transition-colors cursor-pointer bg-gold text-black hover:bg-[#A3863C] w-full sm:min-w-[220px] text-lg px-8 py-7 h-auto uppercase tracking-widest font-bold shadow-[0_0_30px_-5px_var(--color-gold)] hover:shadow-[0_0_50px_-5px_var(--color-gold)] transition-shadow duration-500">
+              <span className="inline-flex items-center justify-center rounded-sm font-medium transition-colors cursor-pointer bg-gold text-black hover:bg-[#A3863C] w-full sm:min-w-[180px] text-sm md:text-base px-6 py-4 h-auto uppercase tracking-widest font-bold shadow-[0_0_30px_-5px_var(--color-gold)] hover:shadow-[0_0_50px_-5px_var(--color-gold)] transition-shadow duration-500">
                 Demander un devis
               </span>
             </Link>
             <Link href="#prestations" className="w-full sm:w-auto">
-              <span className="inline-flex items-center justify-center rounded-sm font-medium transition-colors cursor-pointer border border-gold text-gold hover:bg-gold hover:text-black w-full sm:min-w-[220px] text-lg py-7 h-auto uppercase tracking-widest border-white/20 hover:bg-white/70 hover:border-white text-white">
+              <span className="inline-flex items-center justify-center rounded-sm font-medium transition-colors cursor-pointer border border-gold text-gold hover:bg-gold hover:text-black w-full sm:min-w-[180px] text-sm md:text-base py-4 h-auto uppercase tracking-widest border-white/20 hover:bg-white/70 hover:border-white text-white">
                 Nos PRESTATIONS
               </span>
             </Link>
@@ -262,8 +262,8 @@ export default async function Home() {
                 { label: "Expertise", desc: "Technique & Artistique", icon: "✨" },
               ]).map((item: any, idx: number) => (
                 <div key={idx} className="bg-white/5 p-6 rounded-lg border border-white/5 hover:border-gold/30 hover:bg-white/10 transition-all duration-300 group">
-                  <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">{item.icon}</div>
-                  <h3 className="text-xl font-bold font-heading uppercase text-white mb-1 group-hover:text-gold transition-colors">{item.label}</h3>
+                  <div className="text-3xl md:text-4xl mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300">{item.icon}</div>
+                  <h3 className="text-base md:text-xl font-bold font-heading uppercase text-white mb-1 group-hover:text-gold transition-colors">{item.label}</h3>
                   <p className="text-gray-400 text-sm">{item.desc}</p>
                 </div>
               ))}
@@ -465,7 +465,7 @@ export default async function Home() {
                 <span className="inline-block py-2 px-4 border border-gold/50 rounded-full text-gold uppercase tracking-widest text-xs font-bold mb-6 backdrop-blur-md">
                   Couverture Nationale
                 </span>
-                <h3 className="text-5xl md:text-7xl font-bold font-heading uppercase text-white mb-8 border-l-4 border-gold pl-8">
+                <h3 className="text-3xl md:text-6xl font-bold font-heading uppercase text-white mb-6 border-l-4 border-gold pl-6 md:pl-8">
                   Intervention <br />Partout en France
                 </h3>
                 <p className="text-gray-300 mb-10 text-xl font-light leading-relaxed pl-8 border-l border-white/10">
@@ -526,7 +526,7 @@ export default async function Home() {
         </Container>
       </section>
 
-    </div>
+    </div >
   );
 }
 

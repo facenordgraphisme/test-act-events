@@ -24,9 +24,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                         'bg-gold text-black hover:bg-[#A3863C]': variant === 'primary',
                         'border border-gold text-gold hover:bg-gold hover:text-black': variant === 'outline',
                         'hover:bg-white/10 text-white': variant === 'ghost',
-                        'h-9 px-4 text-sm': size === 'sm',
-                        'h-11 px-8 text-base': size === 'md',
-                        'h-14 px-10 text-lg': size === 'lg',
+                        'h-8 px-3 text-xs md:text-sm': size === 'sm',
+                        'h-10 px-6 text-sm md:text-base': size === 'md',
+                        'h-12 px-8 text-base md:text-lg': size === 'lg',
                     },
                     className
                 )}
