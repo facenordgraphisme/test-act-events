@@ -301,15 +301,15 @@ export default async function Home() {
                   </div>
 
                   <div className="absolute bottom-0 left-0 p-8 w-full">
-                    <div className="text-gold text-sm font-bold uppercase tracking-widest mb-2 transform -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                    <div className="text-gold text-sm font-bold uppercase tracking-widest mb-2 transform opacity-100 translate-y-0 md:-translate-y-4 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 transition-all duration-500">
                       {service.subtitle}
                     </div>
                     <h3 className="text-2xl md:text-3xl font-bold font-heading text-white uppercase mb-4 leading-none tracking-wide">{service.title}</h3>
-                    <div className="h-[1px] w-12 group-hover:w-full bg-gold mb-4 transition-all duration-500" />
-                    <p className="text-gray-300 text-lg font-light leading-relaxed transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-75">
+                    <div className="h-[1px] bg-gold mb-4 transition-all duration-500 w-full md:w-12 md:group-hover:w-full" />
+                    <p className="text-gray-300 text-lg font-light leading-relaxed transform opacity-100 translate-y-0 md:translate-y-4 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 transition-all duration-500 delay-75">
                       {service.description}
                     </p>
-                    <div className="mt-8 flex items-center gap-2 text-white font-bold uppercase tracking-widest text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-150">
+                    <div className="mt-8 flex items-center gap-2 text-white font-bold uppercase tracking-widest text-sm opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 delay-150">
                       En savoir plus <span>→</span>
                     </div>
                   </div>
