@@ -146,6 +146,30 @@ export default defineType({
             ]
         }),
 
+        // --- COVERAGE SECTION ---
+        defineField({
+            name: 'coverage',
+            title: 'Section Couverture Nationale',
+            type: 'object',
+            options: {
+                collapsible: true,
+            },
+            fields: [
+                defineField({ name: 'badge', type: 'string', title: 'Badge (ex: Couverture Nationale)' }),
+                defineField({ name: 'title', type: 'string', title: 'Titre' }),
+                defineField({ name: 'description', type: 'text', title: 'Description' }),
+                defineField({
+                    name: 'activities',
+                    title: 'Liste des Activités',
+                    type: 'array',
+                    of: [{ type: 'string' }]
+                }),
+                defineField({ name: 'image', type: 'image', title: 'Image de Fond', options: { hotspot: true } }),
+                defineField({ name: 'ctaText', type: 'string', title: 'Texte Bouton' }),
+                defineField({ name: 'ctaLink', type: 'string', title: 'Lien Bouton' }),
+            ]
+        }),
+
         // --- TRUST SECTION ---
         defineField({
             name: 'trust',

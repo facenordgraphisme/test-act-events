@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { HeroBackground } from "@/components/ui/HeroBackground";
 import ServiceCard from "@/components/home/ServiceCard";
+import TrustSection from "@/components/home/TrustSection";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { PortableText } from "next-sanity";
@@ -72,6 +73,15 @@ const HOMEPAGE_QUERY = `*[_type == "homepage"][0]{
       name,
       logo
     }
+  },
+  coverage {
+    badge,
+    title,
+    description,
+    activities,
+    image,
+    ctaText,
+    ctaLink
   },
   seo
 }`;
@@ -422,7 +432,7 @@ export default async function Home() {
           {/* NATIONAL COVERAGE */}
           <div className="relative rounded-none lg:rounded-[2rem] overflow-hidden min-h-[600px] flex items-center">
             <Image
-              src="/assets/image00005.jpeg"
+              src={data?.coverage?.image ? urlFor(data.coverage.image).url() : "/assets/image00005.jpeg"}
               alt="Couverture Nationale"
               fill
               className="object-cover z-0"
@@ -435,17 +445,21 @@ export default async function Home() {
             <Container className="relative z-10 w-full">
               <div className="max-w-2xl py-4">
                 <span className="inline-block py-2 px-4 border border-gold/50 rounded-full text-gold uppercase tracking-widest text-xs font-bold mb-6 backdrop-blur-md">
-                  Couverture Nationale
+                  {data?.coverage?.badge || "Couverture Nationale"}
                 </span>
                 <h3 className="text-3xl md:text-6xl font-bold font-heading uppercase text-white mb-6 border-l-4 border-gold pl-6 md:pl-8">
-                  Intervention <br />Partout en France
+                  {data?.coverage?.title ? (
+                    data.coverage.title
+                  ) : (
+                    <>Intervention <br />Partout en France</>
+                  )}
                 </h3>
                 <p className="text-gray-300 mb-10 text-xl font-light leading-relaxed pl-8 border-l border-white/10">
-                  Des solutions techniques dimensionnées pour les festivals, tournées et événements majeurs sur l&apos;ensemble du territoire.
+                  {data?.coverage?.description || "Des solutions techniques dimensionnées pour les festivals, tournées et événements majeurs sur l'ensemble du territoire."}
                 </p>
                 <div className="pl-8">
                   <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-12 mb-12">
-                    {NATIONAL_ACTIVITIES.map((item, i) => (
+                    {(data?.coverage?.activities || NATIONAL_ACTIVITIES).map((item: string, i: number) => (
                       <li key={i} className="flex items-center gap-3 text-gray-200">
                         <div className="w-1.5 h-1.5 bg-gold rotate-45" />
                         <span className="uppercase tracking-wide text-sm">{item}</span>
@@ -453,9 +467,9 @@ export default async function Home() {
                     ))}
                   </ul>
 
-                  <Link href="/contact">
+                  <Link href={data?.coverage?.ctaLink || "/contact"}>
                     <span className="inline-flex items-center justify-center rounded-sm font-medium transition-colors cursor-pointer bg-gold text-black hover:bg-[#A3863C] bg-white text-black hover:bg-gold hover:text-white border-none text-sm md:text-base px-6 py-4 h-auto tracking-widest uppercase font-bold transition-all duration-300">
-                      Discuter de votre projet
+                      {data?.coverage?.ctaText || "Discuter de votre projet"}
                     </span>
                   </Link>
                 </div>
@@ -467,36 +481,7 @@ export default async function Home() {
       </section>
 
       {/* FREQUENTLY ASKED QUESTIONS OR TRUST INDICATORS (TRUST) */}
-      <section className="py-24 bg-neutral-900 text-white">
-        <Container className="text-center">
-          <p className="uppercase tracking-[0.3em] text-gold text-sm mb-4">{data?.trust?.subtitle || "Confiance & Expertise"}</p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-12">{data?.trust?.title || "Ils nous font confiance"}</h2>
-          <div className="flex flex-wrap justify-center gap-12 md:gap-24 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-            {(data?.trust?.logos || []).map((client: any, idx: number) => (
-              <div key={idx} className="flex items-center justify-center">
-                {client.logo ? (
-                  <Image
-                    src={urlFor(client.logo).url()}
-                    alt={client.name || "Client"}
-                    width={200}
-                    height={100}
-                    className="max-h-16 w-auto hover:opacity-100 transition-opacity object-contain"
-                  />
-                ) : (
-                  <span className="text-2xl font-heading font-bold">{client.name}</span>
-                )}
-              </div>
-            ))}
-            {(!data?.trust?.logos || data.trust.logos.length === 0) && (
-              <>
-                <span className="text-2xl font-heading font-bold">A DEFINIR</span>
-                <span className="text-2xl font-heading font-bold">A DEFINIR</span>
-                <span className="text-2xl font-heading font-bold">A DEFINIR</span>
-              </>
-            )}
-          </div>
-        </Container>
-      </section>
+      <TrustSection data={data?.trust || {}} />
 
     </div >
   );
