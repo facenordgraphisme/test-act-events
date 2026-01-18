@@ -44,13 +44,13 @@ export default function TrustSection({ data }: TrustSectionProps) {
                 <p className="uppercase tracking-[0.3em] text-gold text-sm mb-4">
                     {data?.subtitle || "Confiance & Expertise"}
                 </p>
-                <h2 className="text-3xl md:text-4xl font-bold mb-12">
+                <h2 className="text-3xl md:text-5xl uppercase font-bold mb-12">
                     {data?.title || "Ils nous font confiance"}
                 </h2>
 
                 <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]">
                     <motion.div
-                        className="flex min-w-max gap-12 md:gap-24 items-center"
+                        className="flex min-w-max gap-6 md:gap-24 items-center"
                         animate={{ x: ["0%", "-50%"] }}
                         transition={{
                             repeat: Infinity,
@@ -62,7 +62,7 @@ export default function TrustSection({ data }: TrustSectionProps) {
                         {[...data.logos || [], ...data.logos || [], ...data.logos || [], ...data.logos || []].map((client, idx) => (
                             <div
                                 key={idx}
-                                className="flex items-center justify-center min-w-[150px] md:min-w-[200px] grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100"
+                                className="flex items-center justify-center min-w-[150px] md:min-w-[200px] grayscale-0 opacity-100 md:grayscale md:opacity-60 md:hover:grayscale-0 md:hover:opacity-100 transition-all duration-300"
                             >
                                 {client.logo ? (
                                     <Image
@@ -70,7 +70,7 @@ export default function TrustSection({ data }: TrustSectionProps) {
                                         alt={client.name || "Client"}
                                         width={200}
                                         height={100}
-                                        className="max-h-12 md:max-h-16 w-auto object-contain"
+                                        className="max-h-20 md:max-h-24 w-auto object-contain"
                                     />
                                 ) : (
                                     <span className="text-xl md:text-2xl font-heading font-bold whitespace-nowrap">{client.name}</span>
