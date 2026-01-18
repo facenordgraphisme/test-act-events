@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { HeroBackground } from "@/components/ui/HeroBackground";
+import ServiceCard from "@/components/home/ServiceCard";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { PortableText } from "next-sanity";
@@ -285,36 +286,7 @@ export default async function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {servicesToDisplay.map((service: any, idx: number) => (
-              <Link key={idx} href={service.link || "#"}>
-                <div className="group relative h-[600px] overflow-hidden cursor-pointer grayscale hover:grayscale-0 transition-all duration-700 ease-out border border-black/5">
-                  <Image
-                    src={service.image ? urlFor(service.image).url() : (service.img || "")}
-                    alt={service.title}
-                    fill
-                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 group-hover:opacity-60 transition-opacity duration-500" />
-
-                  <div className="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-x-4 group-hover:translate-x-0">
-                    <span className="text-5xl font-heading text-white/20 font-bold">0{idx + 1}</span>
-                  </div>
-
-                  <div className="absolute bottom-0 left-0 p-8 w-full">
-                    <div className="text-gold text-sm font-bold uppercase tracking-widest mb-2 transform opacity-100 translate-y-0 md:-translate-y-4 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 transition-all duration-500">
-                      {service.subtitle}
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-bold font-heading text-white uppercase mb-4 leading-none tracking-wide">{service.title}</h3>
-                    <div className="h-[1px] bg-gold mb-4 transition-all duration-500 w-full md:w-12 md:group-hover:w-full" />
-                    <p className="text-gray-300 text-lg font-light leading-relaxed transform opacity-100 translate-y-0 md:translate-y-4 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 transition-all duration-500 delay-75">
-                      {service.description}
-                    </p>
-                    <div className="mt-8 flex items-center gap-2 text-white font-bold uppercase tracking-widest text-sm opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 delay-150">
-                      En savoir plus <span>→</span>
-                    </div>
-                  </div>
-                </div>
-              </Link>
+              <ServiceCard key={idx} service={service} index={idx} />
             ))}
           </div>
         </Container>
