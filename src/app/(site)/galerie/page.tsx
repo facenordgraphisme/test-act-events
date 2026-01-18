@@ -44,15 +44,26 @@ export default async function GalleryPage() {
     const { categories, items } = data || { categories: [], items: [] };
 
     return (
-        <div className="pt-32 pb-20 bg-background min-h-screen">
-            <Container>
-                <div className="text-center mb-16 space-y-4">
-                    <h1 className="text-4xl md:text-5xl font-bold font-heading uppercase text-black">Galerie</h1>
-                    <p className="text-gray-600 max-w-2xl mx-auto">
-                        Nos meilleurs moments et setups en images.
-                    </p>
-                </div>
+        <div className="min-h-screen bg-white pb-32">
+            {/* Hero Section */}
+            <section className="relative pt-40 pb-20 overflow-hidden bg-gray-50 mb-12">
+                <div className="absolute inset-0 bg-gold/5 z-0" />
+                <Container className="relative z-10">
+                    <div className="text-center max-w-4xl mx-auto space-y-6">
+                        <span className="text-gold font-bold uppercase tracking-widest text-sm md:text-base">
+                            Nos Réalisations
+                        </span>
+                        <h1 className="text-5xl md:text-7xl font-bold font-heading uppercase text-black leading-none">
+                            Galerie
+                        </h1>
+                        <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                            Découvrez nos meilleurs moments et nos setups techniques en images.
+                        </p>
+                    </div>
+                </Container>
+            </section>
 
+            <Container>
                 <GalleryClient categories={categories} items={items} />
             </Container>
         </div>

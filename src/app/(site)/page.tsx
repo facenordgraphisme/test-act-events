@@ -147,8 +147,8 @@ export default async function Home() {
               width={600}
               height={225}
               priority
-              className="w-full max-w-2xl md:max-w-4xl h-auto max-h-[30vh] md:max-h-[40vh] object-contain mx-auto" // Removed animate-enter-logo and hover-glow-logo
-              sizes="(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 33vw" // More aggressive sizing
+              className="w-full max-w-xs md:max-w-4xl h-auto max-h-[20vh] md:max-h-[40vh] object-contain mx-auto" // Reduced size on mobile
+              sizes="(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
 
