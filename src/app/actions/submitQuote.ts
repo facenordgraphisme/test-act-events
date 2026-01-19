@@ -28,6 +28,9 @@ export async function submitQuote(data: unknown) {
                 user: process.env.SMTP_USER,
                 pass: process.env.SMTP_PASS,
             },
+            tls: {
+                rejectUnauthorized: false
+            }
         });
 
         // Generate HTML content
@@ -47,6 +50,6 @@ export async function submitQuote(data: unknown) {
         return { success: true };
     } catch (error) {
         console.error("Submission error:", error);
-        return { success: false, message: "Une erreur est survenue lors de l'envoi." };
+        return { success: false, message: (error as Error).message || "Une erreur est survenue lors de l'envoi." };
     }
 }

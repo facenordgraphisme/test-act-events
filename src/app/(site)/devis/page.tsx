@@ -60,7 +60,18 @@ export default function QuotePage() {
             reset();
             window.scrollTo({ top: 0, behavior: "smooth" });
         } else {
-            alert("Une erreur est survenue. Veuillez vérifier tous les champs.");
+            console.error("Submit Error:", result);
+            if (result.message) {
+                alert(`Erreur: ${result.message}`);
+            } else if (result.errors) {
+                // Format Zod errors for alert
+                const errorMessages = Object.entries(result.errors)
+                    .map(([field, msgs]) => `${field}: ${(msgs as string[]).join(", ")}`)
+                    .join("\n");
+                alert(`Erreur de validation:\n${errorMessages}`);
+            } else {
+                alert("Une erreur inconnue est survenue.");
+            }
         }
     };
 

@@ -1,22 +1,45 @@
 
 interface EmailData {
-    fullName: string;
-    email: string;
-    phone: string;
-    city?: string;
-    eventType: string;
-    serviceType: string;
-    eventDate: string;
-    postcode: string;
-    guestCount: number;
-    venueType: string;
-    startTime?: string;
-    endTime?: string;
-    needs?: string;
+  fullName: string;
+  email: string;
+  phone: string;
+  city?: string;
+  eventType: string;
+  serviceType: string;
+  eventDate: string;
+  postcode: string;
+  guestCount: number;
+  venueType: string;
+  startTime?: string;
+  endTime?: string;
+  needs?: string;
 }
 
+
+const EVENT_TYPE_LABELS: Record<string, string> = {
+  wedding: "Mariage",
+  birthday: "Anniversaire",
+  corporate: "Soirée d'entreprise / Séminaire",
+  other: "Autre",
+};
+
+const SERVICE_TYPE_LABELS: Record<string, string> = {
+  full: "Formule Complète (DJ + Son + Lumière)",
+  dj: "DJ Set Uniquement",
+  rental: "Location Matériel Seul",
+};
+
+const VENUE_TYPE_LABELS: Record<string, string> = {
+  indoor: "Intérieur",
+  outdoor: "Extérieur",
+};
+
 export function generateEmailHtml(data: EmailData): string {
-    return `
+  const eventTypeFr = EVENT_TYPE_LABELS[data.eventType] || data.eventType;
+  const serviceTypeFr = SERVICE_TYPE_LABELS[data.serviceType] || data.serviceType;
+  const venueTypeFr = VENUE_TYPE_LABELS[data.venueType] || data.venueType;
+
+  return `
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,7 +84,7 @@ export function generateEmailHtml(data: EmailData): string {
       <h2>🎉 Événement</h2>
       <p>
         <div class="label">Type d'événement</div>
-        <div class="value">${data.eventType}</div>
+        <div class="value">${eventTypeFr}</div>
       </p>
       <p>
         <div class="label">Date</div>
@@ -69,7 +92,7 @@ export function generateEmailHtml(data: EmailData): string {
       </p>
       <p>
         <div class="label">Lieu</div>
-        <div class="value">${data.postcode} (${data.venueType === 'indoor' ? 'Intérieur' : 'Extérieur'})</div>
+        <div class="value">${data.postcode} (${venueTypeFr})</div>
       </p>
       <p>
         <div class="label">Invités</div>
@@ -86,7 +109,7 @@ export function generateEmailHtml(data: EmailData): string {
       <h2>🎵 Prestation & Besoins</h2>
       <p>
         <div class="label">Type de prestation</div>
-        <div class="value">${data.serviceType}</div>
+        <div class="value">${serviceTypeFr}</div>
       </p>
       ${data.needs ? `
       <p>
