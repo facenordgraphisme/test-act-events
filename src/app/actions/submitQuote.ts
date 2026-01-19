@@ -1,7 +1,8 @@
 "use server";
 
 import { quoteSchema } from "@/lib/validations/quoteSchema";
-import { client } from "@/sanity/lib/client";
+import nodemailer from "nodemailer";
+import { generateEmailHtml } from "@/lib/emailTemplate";
 
 export async function submitQuote(data: unknown) {
     const result = quoteSchema.safeParse(data);
@@ -18,22 +19,30 @@ export async function submitQuote(data: unknown) {
     const { website, ...validData } = result.data;
 
     try {
-        // Determine write token availability.
-        // In a real app, you'd use a separate client with a write token.
-        // For now, we'll log the intention.
+        // Configure SMTP Transporter
+        const transporter = nodemailer.createTransport({
+            host: process.env.SMTP_HOST,
+            port: Number(process.env.SMTP_PORT) || 587,
+            secure: Number(process.env.SMTP_PORT) === 465, // true for 465, false for other ports
+            auth: {
+                user: process.env.SMTP_USER,
+                pass: process.env.SMTP_PASS,
+            },
+        });
 
-        console.log("Submitting Quote to Sanity:", validData);
+        // Generate HTML content
+        const htmlContent = generateEmailHtml(validData);
 
-        // UNCOMMENT THIS WHEN YOU HAVE A WRITE TOKEN in .env.local named SANITY_API_TOKEN
-        // const writeClient = client.withConfig({ token: process.env.SANITY_API_TOKEN })
-        // await writeClient.create({
-        //   _type: 'quoteRequest',
-        //   ...validData,
-        //   createdAt: new Date().toISOString()
-        // })
+        // Send Email
+        await transporter.sendMail({
+            from: process.env.SMTP_FROM || '"Act Events Website" <no-reply@act-events.fr>',
+            to: "contact@act-event-pro.fr", // Destination address
+            subject: `Nouvelle demande de devis : ${validData.eventType} - ${validData.eventDate}`,
+            html: htmlContent,
+            replyTo: validData.email, // Allow direct reply to the client
+        });
 
-        // For demo purposes, we'll simulate success delay
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        console.log("Email sent successfully for:", validData.email);
 
         return { success: true };
     } catch (error) {

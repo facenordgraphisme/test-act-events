@@ -17,9 +17,7 @@ export const structure: StructureResolver = (S) =>
               S.listItem()
                 .title('A Propos')
                 .child(S.document().schemaType('aboutPage').documentId('aboutPage')),
-              S.listItem()
-                .title('Contact')
-                .child(S.document().schemaType('contactPage').documentId('contactPage')),
+
               S.listItem()
                 .title('Devis (Contenu)')
                 .child(S.document().schemaType('quotePage').documentId('quotePage')),

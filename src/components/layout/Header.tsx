@@ -50,7 +50,7 @@ export function Header() {
         { href: '/prestations', label: 'Prestations' },
         { href: '/galerie', label: 'Galerie' },
         { href: '/a-propos', label: 'À Propos' },
-        { href: '/contact', label: 'Contact' },
+
     ];
 
     return (
