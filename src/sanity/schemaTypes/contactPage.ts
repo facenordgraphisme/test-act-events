@@ -28,6 +28,12 @@ export default defineType({
             description: 'Afficher les cartes Téléphone, Email et Localisation (récupérées des Paramètres du Site).',
         }),
         defineField({
+            name: 'ctaText',
+            title: 'Texte du Bouton Devis',
+            type: 'string',
+            initialValue: 'Accéder au Formulaire de Devis',
+        }),
+        defineField({
             name: 'ctaLink',
             title: 'Lien du Bouton Devis',
             type: 'string',

@@ -9,14 +9,32 @@ import { Select } from "@/components/ui/Select";
 import { Textarea } from "@/components/ui/Textarea";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { client } from "@/sanity/lib/client";
+
+// Define helper to fetch content on client side since this is a client component
+// Alternatively we could pass data from a server component wrapper, but for simplicity/speed here we can fetch in useEffect
+// Or better: make this a server component that passes data to a client form component.
+// Given the existing structure is a client component, I will refactor slightly to fetch data OR just hardcode the content fetch here if acceptable,
+// but idiomatic Next.js App Router suggests Server Component -> Client Component.
+// Let's do the fetch inside useEffect for now to keep the file single, or wrap it.
+// Actually, let's keep it simple and just fetch in useEffect.
 
 export default function QuotePage() {
+    const [pageContent, setPageContent] = useState<any>(null);
     const [isSuccess, setIsSuccess] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
+
+    useEffect(() => {
+        const fetchContent = async () => {
+            const data = await client.fetch(`*[_type == "quotePage"][0]`);
+            setPageContent(data);
+        };
+        fetchContent();
+    }, []);
 
     const {
         register,
@@ -58,9 +76,9 @@ export default function QuotePage() {
                     <div className="flex justify-center mb-6">
                         <CheckCircle2 className="text-gold w-20 h-20" />
                     </div>
-                    <h1 className="text-4xl font-bold font-heading text-black mb-4">Demande Reçue !</h1>
+                    <h1 className="text-4xl font-bold font-heading text-black mb-4">{pageContent?.successTitle || "Demande Reçue !"}</h1>
                     <p className="text-gray-600 text-lg mb-8">
-                        Merci de nous avoir contactés. Nous avons bien reçu votre demande de devis et nous reviendrons vers vous sous 24h avec une proposition personnalisée.
+                        {pageContent?.successMessage || "Merci de nous avoir contactés. Nous avons bien reçu votre demande de devis et nous reviendrons vers vous sous 24h avec une proposition personnalisée."}
                     </p>
                     <Link href="/">
                         <Button variant="outline">Retour à l'accueil</Button>
@@ -75,10 +93,10 @@ export default function QuotePage() {
             <Container className="max-w-4xl">
                 <div className="text-center mb-16 space-y-4">
                     <h1 className="text-4xl md:text-5xl font-bold font-heading uppercase text-black">
-                        Demander un <span className="text-gold">Devis</span>
+                        {pageContent?.title || "Demander un Devis"}
                     </h1>
                     <p className="text-gray-600 max-w-xl mx-auto">
-                        Dites-nous en plus sur votre événement. Nous nous engageons à vous répondre rapidement (sous 24h).
+                        {pageContent?.subtitle || "Dites-nous en plus sur votre événement. Nous nous engageons à vous répondre rapidement (sous 24h)."}
                     </p>
                 </div>
 

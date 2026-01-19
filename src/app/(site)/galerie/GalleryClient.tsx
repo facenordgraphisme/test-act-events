@@ -16,6 +16,7 @@ type GalleryCategory = {
 type GalleryItem = {
     _id: string;
     title: string;
+    description?: string;
     image: any;
     category: GalleryCategory;
 }
@@ -176,6 +177,11 @@ export default function GalleryClient({ categories, items }: GalleryClientProps)
                                 <h3 className="text-white text-xl md:text-2xl font-bold font-heading">
                                     {selectedImage.title}
                                 </h3>
+                                {selectedImage.description && (
+                                    <p className="text-gray-300 mt-2 max-w-2xl mx-auto text-sm md:text-base">
+                                        {selectedImage.description}
+                                    </p>
+                                )}
                             </div>
                         </motion.div>
                     </motion.div>

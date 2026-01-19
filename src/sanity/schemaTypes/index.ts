@@ -14,6 +14,9 @@ import privacyPolicy from './privacyPolicy'
 
 import seo from './seo'
 
+import aboutPage from './aboutPage'
+import quotePage from './quotePage'
+
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [siteSettings, service, testimonial, galleryItem, faq, quoteRequest, homepage, contactPage, galleryCategory, seo, privacyPolicy],
+  types: [siteSettings, service, testimonial, galleryItem, faq, quoteRequest, homepage, contactPage, aboutPage, quotePage, galleryCategory, seo, privacyPolicy],
 }

@@ -5,13 +5,13 @@ import { Container } from "@/components/ui/Container";
 import { HeroBackground } from "@/components/ui/HeroBackground";
 import ServiceCard from "@/components/home/ServiceCard";
 import TrustSection from "@/components/home/TrustSection";
+import FaqSection from "@/components/home/FaqSection";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { PortableText } from "next-sanity";
 
 import { generateSeoMetadata, generateStructuredData } from "@/lib/seo";
 
-// --- GROQ QUERY ---
 // --- CONSTANTS ---
 const MAIN_ZONE_CITIES = ["Gap", "Briançon", "Embrun", "Guillestre", "L'Argentière", "Veynes", "Tallard", "Chorges", "Serre Chevalier", "Montgenèvre", "La Grave", "Orcières", "Vars", "Risoul"];
 
@@ -35,7 +35,8 @@ const NATIONAL_ACTIVITIES = [
 ];
 
 // --- GROQ QUERY ---
-const HOMEPAGE_QUERY = `*[_type == "homepage"][0]{
+const HOMEPAGE_QUERY = `*[_id == "homepage"][0]{
+  _id,
   hero {
     backgroundImages,
     description
@@ -83,6 +84,11 @@ const HOMEPAGE_QUERY = `*[_type == "homepage"][0]{
     ctaText,
     ctaLink
   },
+  "faqItems": *[_type == "faq"] | order(order asc) {
+    _id,
+    question,
+    answer
+  },
   seo
 }`;
 
@@ -96,6 +102,7 @@ export async function generateMetadata() {
 
 export default async function Home() {
   const data = await client.fetch(HOMEPAGE_QUERY);
+  // console.log("Homepage Data (ID & Trust):", data?._id, JSON.stringify(data?.trust, null, 2));
 
   // Prepare Hero Images
   const heroImages = data?.hero?.backgroundImages?.map((img: any) => urlFor(img).url()) || [];
@@ -483,7 +490,9 @@ export default async function Home() {
       {/* FREQUENTLY ASKED QUESTIONS OR TRUST INDICATORS (TRUST) */}
       <TrustSection data={data?.trust || {}} />
 
+      {/* FAQ SECTION */}
+      <FaqSection items={data?.faqItems || []} />
+
     </div >
   );
 }
-

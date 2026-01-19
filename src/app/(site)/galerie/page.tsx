@@ -16,6 +16,7 @@ type GalleryCategory = {
 type GalleryItem = {
     _id: string;
     title: string;
+    description?: string;
     image: any;
     category: GalleryCategory;
 }
@@ -27,6 +28,7 @@ const GALLERY_QUERY = `
   "items": *[_type == "galleryItem"] | order(_createdAt desc) {
     _id,
     title,
+    description,
     image,
     category->{
       _id,

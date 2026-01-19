@@ -29,5 +29,11 @@ export default defineType({
             title: 'Texte Alternatif',
             type: 'string',
         }),
+        defineField({
+            name: 'description',
+            title: 'Description',
+            type: 'text',
+            rows: 3,
+        }),
     ],
 })

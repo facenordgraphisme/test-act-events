@@ -59,29 +59,33 @@ export default function TrustSection({ data }: TrustSectionProps) {
                         }}
                     >
                         {/* Duplicate logos to ensure seamless loop */}
-                        {[...data.logos || [], ...data.logos || [], ...data.logos || [], ...data.logos || []].map((client, idx) => (
-                            <div
-                                key={idx}
-                                className="flex items-center justify-center min-w-[150px] md:min-w-[200px] grayscale-0 opacity-100 md:grayscale md:opacity-60 md:hover:grayscale-0 md:hover:opacity-100 transition-all duration-300"
-                            >
-                                {client.logo ? (
-                                    <Image
-                                        src={urlFor(client.logo).url()}
-                                        alt={client.name || "Client"}
-                                        width={200}
-                                        height={100}
-                                        className="max-h-20 md:max-h-24 w-auto object-contain"
-                                    />
-                                ) : (
-                                    <span className="text-xl md:text-2xl font-heading font-bold whitespace-nowrap">{client.name}</span>
-                                )}
-                            </div>
-                        ))}
-
-                        {(!data?.logos || data.logos.length === 0) && (
+                        {data.logos && data.logos.length > 0 ? (
+                            // Create a multiplied array specifically for the animation loop
+                            // We need enough items to fill the screen width + buffer for the scroll
+                            Array(10).fill(data.logos).flat().map((client, idx) => (
+                                <div
+                                    key={`${client.name}-${idx}`}
+                                    className="flex items-center justify-center min-w-[150px] md:min-w-[200px] grayscale-0 opacity-100 md:grayscale md:opacity-60 md:hover:grayscale-0 md:hover:opacity-100 transition-all duration-300 px-4"
+                                >
+                                    {client.logo ? (
+                                        <div className="relative h-20 w-32 md:h-24 md:w-40">
+                                            <Image
+                                                src={urlFor(client.logo).url()}
+                                                alt={client.name || "Client"}
+                                                fill
+                                                className="object-contain"
+                                                sizes="(max-width: 768px) 150px, 200px"
+                                            />
+                                        </div>
+                                    ) : (
+                                        <span className="text-xl md:text-2xl font-heading font-bold whitespace-nowrap">{client.name}</span>
+                                    )}
+                                </div>
+                            ))
+                        ) : (
                             // Fallback if no logos, just duplicate generic text
-                            [1, 2, 3, 4, 1, 2, 3, 4].map((i) => (
-                                <span key={i} className="text-2xl font-heading font-bold opacity-30 whitespace-nowrap">A DEFINIR</span>
+                            [1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4].map((i) => (
+                                <span key={i} className="text-2xl font-heading font-bold opacity-30 whitespace-nowrap px-8">A DEFINIR</span>
                             ))
                         )}
                     </motion.div>
