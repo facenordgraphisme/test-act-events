@@ -13,7 +13,7 @@ interface SeoData {
 }
 
 export function generateSeoMetadata(data: SeoData, fallback?: { title: string; description: string }): Metadata {
-    const title = data?.metaTitle || data?.title || fallback?.title || 'Act Events';
+    const title = data?.metaTitle || data?.title || fallback?.title || 'Act Event';
     const description = data?.metaDescription || data?.shortDescription || data?.description || fallback?.description || '';
 
     // Base metadata
@@ -53,8 +53,8 @@ export function generateStructuredData(type: 'Organization' | 'Product' | 'Servi
     };
 
     if (type === 'Organization' || type === 'WebSite') {
-        schema.name = data.name || 'Act Events';
-        schema.url = 'https://www.act-events.fr'; // TODO: Replace with env var if needed
+        schema.name = data.name || 'Act Event';
+        schema.url = 'https://www.act-event-pro.fr'; // TODO: Replace with env var if needed
         if (data.logo) {
             schema.logo = urlFor(data.logo).url();
         }

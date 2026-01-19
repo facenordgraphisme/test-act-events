@@ -15,7 +15,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "ACT Events | DJ & Sonorisation Hautes-Alpes",
+  title: "ACT Event | DJ & Sonorisation Hautes-Alpes",
   description: "Location de sonorisation et DJ pour mariages, anniversaires et séminaires dans les Hautes-Alpes (Gap, Briançon, Embrun).",
   icons: {
     icon: "/assets/logos/icon.webp",

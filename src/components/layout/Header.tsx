@@ -9,7 +9,7 @@ import Link from 'next/link';
 <Link href="/" className="relative h-12 w-auto md:h-16 transition-transform hover:scale-105 block aspect-[2/1]">
     <Image
         src="/assets/logos/icon.webp"
-        alt="ACT Events"
+        alt="ACT Event"
         width={120} // Reduced from 200
         height={60} // Reduced from 100
         className="object-contain h-full w-auto"
@@ -64,7 +64,7 @@ export function Header() {
                 <Link href="/" className="relative h-10 w-auto md:h-16 transition-transform hover:scale-105" onClick={() => setIsMobileMenuOpen(false)}>
                     <Image
                         src="/assets/logos/icon.webp"
-                        alt="ACT Events"
+                        alt="ACT Event"
                         width={120}
                         height={60}
                         className="object-contain h-full w-auto"
@@ -146,7 +146,7 @@ export function Header() {
                         {/* Decorative footer in menu */}
                         <div className="mt-auto pb-12 text-center text-sm text-gray-400">
                             <div className="w-12 h-1 bg-gold mx-auto mb-4 rounded-full" />
-                            <p>&copy; {new Date().getFullYear()} ACT Events</p>
+                            <p>&copy; {new Date().getFullYear()} ACT Event</p>
                         </div>
                     </motion.div>
                 )}

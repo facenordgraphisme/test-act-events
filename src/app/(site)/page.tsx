@@ -95,7 +95,7 @@ const HOMEPAGE_QUERY = `*[_id == "homepage"][0]{
 export async function generateMetadata() {
   const data = await client.fetch(HOMEPAGE_QUERY);
   return generateSeoMetadata(data?.seo, {
-    title: "Act Events | Sonorisation, Éclairage et Événementiel 05",
+    title: "Act Event | Sonorisation, Éclairage et Événementiel 05",
     description: "Prestataire technique événementiel dans les Hautes-Alpes (05). Sonorisation, éclairage, DJ et organisation de festivals."
   });
 }
@@ -161,7 +161,7 @@ export default async function Home() {
           <div className="mb-8 delay-100">
             <Image
               src="/assets/logos/logo-white.webp"
-              alt="ACT Events - Créateurs d'émotions"
+              alt="ACT Event - Créateurs d'émotions"
               width={600}
               height={225}
               priority
@@ -247,7 +247,7 @@ export default async function Home() {
                 ) : (
                   <>
                     <p>
-                      Né d&apos;une passion viscérale pour le son et la musique, <strong className="text-white">ACT Events</strong> est le fruit d&apos;un parcours atypique : celui d&apos;un artiste DJ habitué aux exigences du dancefloor et d&apos;un technicien rigoureux.
+                      Né d&apos;une passion viscérale pour le son et la musique, <strong className="text-white">ACT Event</strong> est le fruit d&apos;un parcours atypique : celui d&apos;un artiste DJ habitué aux exigences du dancefloor et d&apos;un technicien rigoureux.
                     </p>
                     <p>
                       De la fabrication de nos premières enceintes à la direction technique de festivals majeurs, nous avons forgé une expertise unique. Nous ne nous contentons pas d&apos;installer du matériel ; nous créons une <strong className="text-white">expérience immersive</strong>.
@@ -322,7 +322,7 @@ export default async function Home() {
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500 z-10" />
                 <Image
                   src={data?.story?.image ? urlFor(data.story.image).url() : '/assets/image00004.jpeg'}
-                  alt="Notre histoire - ACT Events"
+                  alt="Notre histoire - ACT Event"
                   fill
                   className="object-cover transform group-hover:scale-105 transition-transform duration-700"
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -356,7 +356,7 @@ export default async function Home() {
                 ) : (
                   <>
                     <p>
-                      ACT Events est né d&apos;une conviction simple : <strong>chaque événement mérite une âme.</strong>
+                      ACT Event est né d&apos;une conviction simple : <strong>chaque événement mérite une âme.</strong>
                     </p>
                     <p>
                       De nos débuts à fabriquer nos propres enceintes jusqu&apos;à la direction technique de grands festivals, nous avons forgé une double compétence rare.

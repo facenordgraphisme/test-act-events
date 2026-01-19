@@ -9,7 +9,7 @@ export default function MentionsLegalesPage() {
                 <section>
                     <h2 className="text-xl font-bold text-black mb-2">1. Éditeur du site</h2>
                     <p>
-                        Le site ACT Events est édité par [Nom de la Société], [Forme Juridique] au capital de [Montant] €.<br />
+                        Le site ACT Event est édité par [Nom de la Société], [Forme Juridique] au capital de [Montant] €.<br />
                         Siège social : [Adresse], [Code Postal] [Ville].<br />
                         SIRET : [Numéro]<br />
                         Directeur de la publication : [Nom du Directeur]

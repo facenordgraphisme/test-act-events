@@ -13,7 +13,7 @@ const PRIVACY_QUERY = `*[_type == "privacyPolicy"][0] {
 export async function generateMetadata() {
     const data = await client.fetch(PRIVACY_QUERY);
     return generateSeoMetadata(data?.seo, {
-        title: data?.title || "Politique de Confidentialité | ACT Events",
+        title: data?.title || "Politique de Confidentialité | ACT Event",
         description: "Politique de confidentialité et gestion des données personnelles.",
     });
 }

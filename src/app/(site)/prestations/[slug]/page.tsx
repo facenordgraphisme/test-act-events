@@ -34,14 +34,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         const staticService = getServiceBySlug(slug);
         if (staticService) {
             return generateSeoMetadata({}, {
-                title: `${staticService.title} | Act Events`,
+                title: `${staticService.title} | Act Event`,
                 description: staticService.description
             });
         }
     }
 
     return generateSeoMetadata(service?.seo, {
-        title: service ? `${service.title} | Act Events` : "Prestation | Act Events",
+        title: service ? `${service.title} | Act Event` : "Prestation | Act Event",
         description: service?.shortDescription || ""
     });
 }

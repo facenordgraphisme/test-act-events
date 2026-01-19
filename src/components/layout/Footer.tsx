@@ -28,7 +28,7 @@ export async function Footer() {
                         <Link href="/" className="block relative h-24 w-auto mb-6 aspect-[3/1]">
                             <Image
                                 src="/assets/logos/logo-white.webp"
-                                alt="ACT Events"
+                                alt="ACT Event"
                                 width={200}
                                 height={100}
                                 className="w-full h-full object-contain"
@@ -99,7 +99,7 @@ export async function Footer() {
 
                 <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
                     <div className="flex flex-col md:flex-row items-center gap-4">
-                        <p>© {new Date().getFullYear()} ACT Events. Tous droits réservés.</p>
+                        <p>© {new Date().getFullYear()} ACT Event. Tous droits réservés.</p>
                         <a href="https://www.facenordgraphisme.fr" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1">
                             Propulsé par <span className="font-bold text-gray-400 hover:text-gold transition-colors">Face Nord Graphisme</span>
                         </a>

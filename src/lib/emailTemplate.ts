@@ -119,7 +119,7 @@ export function generateEmailHtml(data: EmailData): string {
     </div>
 
     <div class="footer">
-      <p>Email généré automatiquement depuis le site web Act Events.</p>
+      <p>Email généré automatiquement depuis le site web Act Event Pro.</p>
     </div>
   </div>
 </body>
