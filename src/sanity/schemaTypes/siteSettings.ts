@@ -44,7 +44,7 @@ export default defineType({
             fields: [
                 defineField({ name: 'instagram', type: 'url' }),
                 defineField({ name: 'facebook', type: 'url' }),
-                defineField({ name: 'youtube', type: 'url' }),
+                defineField({ name: 'googleMyBusiness', title: 'Google My Business', type: 'url' }),
             ],
         }),
         defineField({
