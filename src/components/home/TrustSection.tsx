@@ -58,11 +58,10 @@ export default function TrustSection({ data }: TrustSectionProps) {
                             duration: 30, // Adjust speed here (higher = slower)
                         }}
                     >
-                        {/* Duplicate logos to ensure seamless loop */}
+                        {/* Duplicate logos to ensure seamless loop - Optimized for performance */}
                         {data.logos && data.logos.length > 0 ? (
-                            // Create a multiplied array specifically for the animation loop
-                            // We need enough items to fill the screen width + buffer for the scroll
-                            Array(10).fill(data.logos).flat().map((client, idx) => (
+                            // Use a smaller multiplier (4x instead of 10x) to prevent OOM on mobile
+                            Array(4).fill(data.logos).flat().map((client, idx) => (
                                 <div
                                     key={`${client.name}-${idx}`}
                                     className="flex items-center justify-center min-w-[150px] md:min-w-[200px] grayscale-0 opacity-100 md:grayscale md:opacity-60 md:hover:grayscale-0 md:hover:opacity-100 transition-all duration-300 px-4"
@@ -75,6 +74,8 @@ export default function TrustSection({ data }: TrustSectionProps) {
                                                 fill
                                                 className="object-contain"
                                                 sizes="(max-width: 768px) 150px, 200px"
+                                                loading="lazy"
+                                                quality={75}
                                             />
                                         </div>
                                     ) : (
@@ -84,8 +85,8 @@ export default function TrustSection({ data }: TrustSectionProps) {
                             ))
                         ) : (
                             // Fallback if no logos, just duplicate generic text
-                            [1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4].map((i) => (
-                                <span key={i} className="text-2xl font-heading font-bold opacity-30 whitespace-nowrap px-8">A DEFINIR</span>
+                            [1, 2, 3, 4, 1, 2, 3, 4].map((i, idx) => (
+                                <span key={`${i}-${idx}`} className="text-2xl font-heading font-bold opacity-30 whitespace-nowrap px-8">A DEFINIR</span>
                             ))
                         )}
                     </motion.div>
