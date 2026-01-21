@@ -55,13 +55,13 @@ export default function TrustSection({ data }: TrustSectionProps) {
                         transition={{
                             repeat: Infinity,
                             ease: "linear",
-                            duration: 30, // Adjust speed here (higher = slower)
+                            duration: 60, // Slower speed as requested (was 30)
                         }}
                     >
                         {/* Duplicate logos to ensure seamless loop - Optimized for performance */}
                         {data.logos && data.logos.length > 0 ? (
-                            // Use a smaller multiplier (4x instead of 10x) to prevent OOM on mobile
-                            Array(4).fill(data.logos).flat().map((client, idx) => (
+                            // Use a smaller multiplier (2x instead of 4x) as requested
+                            Array(2).fill(data.logos).flat().map((client, idx) => (
                                 <div
                                     key={`${client.name}-${idx}`}
                                     className="flex items-center justify-center min-w-[150px] md:min-w-[200px] grayscale-0 opacity-100 md:grayscale md:opacity-60 md:hover:grayscale-0 md:hover:opacity-100 transition-all duration-300 px-4"
