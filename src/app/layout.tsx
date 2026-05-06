@@ -15,10 +15,14 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "ACT Event | DJ & Sonorisation Hautes-Alpes",
-  description: "Location de sonorisation et DJ pour mariages, anniversaires et séminaires dans les Hautes-Alpes (Gap, Briançon, Embrun).",
+  title: "ACT Event | DJ, Sonorisation & Éclairage Hautes-Alpes & PACA",
+  description: "Expert en événementiel dans les Hautes-Alpes et en région PACA. Location de sonorisation, éclairage et DJ professionnel pour mariages, séminaires et soirées privées à Gap, Briançon et Embrun.",
+  keywords: ["DJ Hautes-Alpes", "Sonorisation Gap", "Mariage Hautes-Alpes", "Événementiel PACA", "Location sono Briançon", "DJ Provence-Alpes-Côte d'Azur"],
   icons: {
     icon: "/assets/logos/icon.webp",
+  },
+  verification: {
+    google: "41vUk_4VoD9SSBhrPZhitR3jbWfxCoHi6p0qYZYLug0",
   },
 };
 

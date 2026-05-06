@@ -158,7 +158,7 @@ export default function GalleryClient({ categories, items }: GalleryClientProps)
                             <div className="relative w-full h-[70vh] md:h-[80vh]">
                                 {selectedImage.image && (
                                     <Image
-                                        src={urlFor(selectedImage.image).url()}
+                                        src={urlFor(selectedImage.image).width(1920).url()}
                                         alt={selectedImage.title || "Gallery Preview"}
                                         fill
                                         className="object-contain"

@@ -11,6 +11,7 @@ import { urlFor } from "@/sanity/lib/image";
 import { PortableText } from "next-sanity";
 
 import { generateSeoMetadata, generateStructuredData } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 // --- CONSTANTS ---
 const MAIN_ZONE_CITIES = ["Gap", "Briançon", "Embrun", "Guillestre", "L'Argentière", "Veynes", "Tallard", "Chorges", "Serre Chevalier", "Montgenèvre", "La Grave", "Orcières", "Vars", "Risoul"];
@@ -95,8 +96,8 @@ const HOMEPAGE_QUERY = `*[_id == "homepage"][0]{
 export async function generateMetadata() {
   const data = await client.fetch(HOMEPAGE_QUERY);
   return generateSeoMetadata(data?.seo, {
-    title: "Act Event | Sonorisation, Éclairage et Événementiel 05",
-    description: "Prestataire technique événementiel dans les Hautes-Alpes (05). Sonorisation, éclairage, DJ et organisation de festivals."
+    title: "ACT Event | DJ, Sonorisation & Éclairage Hautes-Alpes & PACA",
+    description: "Expert en événementiel dans les Hautes-Alpes et en région PACA. Location de sonorisation, éclairage et DJ professionnel pour mariages et séminaires à Gap, Briançon et Embrun."
   });
 }
 
@@ -105,7 +106,7 @@ export default async function Home() {
   // console.log("Homepage Data (ID & Trust):", data?._id, JSON.stringify(data?.trust, null, 2));
 
   // Prepare Hero Images
-  const heroImages = data?.hero?.backgroundImages?.map((img: any) => urlFor(img).url()) || [];
+  const heroImages = data?.hero?.backgroundImages?.map((img: any) => urlFor(img).width(2000).url()) || [];
 
   // Prepare Services
   // Prefer dynamic "servicesList" from Sanity "service" documents
@@ -150,8 +151,14 @@ export default async function Home() {
     ];
   }
 
+  const structuredData = generateStructuredData('LocalBusiness', {
+    name: "ACT Event",
+    description: data?.seo?.metaDescription || "Expert en événementiel dans les Hautes-Alpes et en région PACA.",
+  });
+
   return (
     <div className="flex flex-col gap-0">
+      <JsonLd data={structuredData} />
       {/* HERO SECTION */}
       <section className="relative h-[100vh] flex items-center justify-center overflow-hidden">
         {/* Dynamic Background */}

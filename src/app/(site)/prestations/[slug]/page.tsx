@@ -77,7 +77,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             <div className="relative h-[60vh] w-full bg-neutral-900 overflow-hidden">
                 <div className="absolute inset-0 bg-black/50 z-10" />
                 <Image
-                    src={service.featuredImage ? urlFor(service.featuredImage).url() : (service.staticImage || '')}
+                    src={service.featuredImage ? urlFor(service.featuredImage).width(1920).url() : (service.staticImage || '')}
                     alt={service.title}
                     fill
                     priority
@@ -150,7 +150,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                                         <div key={i} className="aspect-[4/3] rounded-lg overflow-hidden relative group cursor-pointer">
                                             <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10" />
                                             <Image
-                                                src={typeof img === 'string' ? img : urlFor(img).url()}
+                                                src={typeof img === 'string' ? img : urlFor(img).width(1200).url()}
                                                 alt={`${service.title} illustration ${i}`}
                                                 fill
                                                 className="object-cover transform group-hover:scale-105 transition-transform duration-700"
